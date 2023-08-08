@@ -25,7 +25,7 @@ public class TopDownPlayerController : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        currentHealth = maxHealth;
+        currentHealth = maxHealth; 
     }
 
     // Update is called once per frame
