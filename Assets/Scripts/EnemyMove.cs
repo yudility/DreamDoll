@@ -4,13 +4,115 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
+    public float movePower = 1f;
+
+    Vector3 movement;
+    
+    public int ctratureType;
+    public int nextMove;
+    bool isTracing = false;
+    GameObject traceTarget;
+    SpriteRenderer spriteRenderer;
     Rigidbody2D rigid;
 
-    public int nextMove;
     void Awake()
     {
+        nextMove = -1;
+        spriteRenderer = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
-        Invoke("Think", 5);
+        Move();
+    }
+
+    void FixedUpdate()
+    {
+        rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
+    }
+
+    void Move()
+    {
+        Debug.Log("nextMove = " + nextMove);
+        Debug.Log("isTracing = " + isTracing);
+
+        if (isTracing)
+        {
+            Vector3 playerPos = traceTarget.transform.position;
+
+            if (playerPos.x < transform.position.x) // 플레이어 | 몬스터
+            {
+                spriteRenderer.flipX = false;
+                nextMove = -1;
+            }
+            else if (playerPos.x > transform.position.x) // 몬스터 | 플레이어 
+            {
+                spriteRenderer.flipX = true;
+                nextMove = 1;
+                
+            }
+            Invoke("Move", 1);
+        }
+        else
+        {
+            if (nextMove == 1)
+            {
+                spriteRenderer.flipX = false;
+                nextMove = -1;
+
+            }
+            else if (nextMove == -1)
+            {
+                spriteRenderer.flipX = true;
+                nextMove = 1;
+
+            }
+            Invoke("Move", 3);
+        }
+        
+    }
+
+    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            traceTarget = collision.gameObject;
+            isTracing = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            isTracing = false;
+            if (nextMove == 1)
+            {
+                spriteRenderer.flipX = false;
+                nextMove = -1;
+
+            }
+            else if (nextMove == -1)
+            {
+                spriteRenderer.flipX = true;
+                nextMove = 1;
+
+            }
+            Move();
+        }
+    }
+    
+
+    /* 
+    // 원래 스크립트
+    Rigidbody2D rigid;
+    SpriteRenderer spriteRenderer;
+    public int nextMove;
+   
+    void Awake()
+    {
+        nextMove = -1;
+        rigid = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        Invoke("Think", 1);
     }
 
 
@@ -18,32 +120,23 @@ public class EnemyMove : MonoBehaviour
     {
         rigid.velocity = new Vector2(nextMove, rigid.velocity.y);
 
-        /*
-        //지형체크
-        Vector2 frontVec = new Vector2(rigid.position.x + nextMove, rigid.position.y);
-        Debug.Log("frontVec = "+ frontVec);
-
-        Debug.DrawRay(frontVec, Vector3.down, new Color(0, 1, 0));
-        RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Platform"));
-        if (rayHit.collider == null)
-        {
-            Debug.Log("경고! 이 앞은 낭떠러지");
-            nextMove *= -1;
-            CancelInvoke();
-            Invoke("Think", 5);
-
-        }*/
-        
-        
     }
 
     void Think()
     {
-        nextMove = Random.Range(-1, 2);
-        //Debug.Log("nextMove = "+ nextMove);
-        float nextThinkTime = Random.Range(2f, 5f);
-        //Debug.Log("nextThinkTime = "+ nextThinkTime);
-        Invoke("Think", nextThinkTime);
+        Debug.Log("nextMove = " + nextMove);
 
+        if (nextMove == 1) {
+            nextMove = -1;
+            spriteRenderer.flipX = false;
+        }
+        else if (nextMove == -1) {
+            nextMove = 1;
+            spriteRenderer.flipX = true;
+        }
+   
+        Invoke("Think", 3);
     }
+    */
+   
 }
