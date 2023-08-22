@@ -1,29 +1,61 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyMove : MonoBehaviour
 {
-    public float movePower = 1f;
-
-    Vector3 movement;
-    
+    // 몬스터 이동
     public int nextMove;
     bool isTracing = false;
     GameObject traceTarget;
     SpriteRenderer spriteRenderer;
     Rigidbody2D rigid;
 
-    //체력바
+    // 체력바
     public GameObject prfHPBar;
     public GameObject canvas;
     RectTransform HPBar;
     public float height = 1.7f;
 
+    // 피격
+    public string enemyName;
+    public int maxHp;
+    public int nowHp;
+    public int atkDmg;
+    public int atkSpeed;
+
+    // 피격
+    private void SetEnemyStatus(string _enemyName, int _maxHp, int _atkDmg, int _atkSpeed)
+    {
+        enemyName = _enemyName;
+        maxHp = _maxHp;
+        nowHp = _maxHp;
+        atkDmg = _atkDmg;
+        atkSpeed = _atkSpeed;
+    }
+
+    //플레이어 스크립트 이름 바꾸기
+
+    //public Sword_Man player;
+    Image nowHpbar;
     void Start()
     {
         //체력바
         HPBar = Instantiate(prfHPBar, canvas.transform).GetComponent<RectTransform>();
+
+        //캐릭별 스텟조정
+        if(name.Equals("slime"))
+        {
+            SetEnemyStatus("slime", 3, 1, 1);
+        }
+        else if (name.Equals("skeleton"))
+        {
+            SetEnemyStatus("skeleton", 5, 2, 1);
+        }
+
+        //체력바 조정
+        nowHpbar = HPBar.transform.GetChild(0).GetComponent<Image>();
     }
 
     void Update()
@@ -31,8 +63,18 @@ public class EnemyMove : MonoBehaviour
         //체력바
         Vector3 _HPBarPos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + height, 0));
         HPBar.position = _HPBarPos;
+
+        //체력바 조정
+        nowHpbar.fillAmount = (float)nowHp / (float)maxHp;
     }
 
+
+
+    
+
+
+
+    // 몬스터 이동
     void Awake()
     {
         nextMove = -1;
@@ -90,7 +132,7 @@ public class EnemyMove : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
             traceTarget = collision.gameObject;
             isTracing = true;
@@ -99,7 +141,7 @@ public class EnemyMove : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
             isTracing = false;
             if (nextMove == 1)
