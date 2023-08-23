@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class StagePlayerController : MonoBehaviour
 {
-    Rigidbody2D rigidbody;
+    Rigidbody2D rigid;
     Animator animator;
     SpriteRenderer spriteRenderer;
 
@@ -47,7 +47,7 @@ public class StagePlayerController : MonoBehaviour
 
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -68,9 +68,9 @@ public class StagePlayerController : MonoBehaviour
         nowHpbar.fillAmount = (float) nowHp / (float) maxHp;
 
         //Landing Platform
-        Debug.DrawRay(rigidbody.position, Vector3.down * 1.5f, Color.yellow);
+        Debug.DrawRay(GetComponent<Rigidbody2D>().position, Vector3.down * 1.5f, Color.yellow);
 
-        RaycastHit2D rayHit = Physics2D.Raycast(rigidbody.position, Vector2.down, 1.5f, LayerMask.GetMask("Platform"));
+        RaycastHit2D rayHit = Physics2D.Raycast(GetComponent<Rigidbody2D>().position, Vector2.down, 1.5f, LayerMask.GetMask("Platform"));
 
         if (rayHit.collider != null)
         {
@@ -82,14 +82,14 @@ public class StagePlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && !animator.GetBool("isJumping"))
         {
-            rigidbody.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             animator.SetBool("isJumping", true);
         }
 
         //slide?
         if (Input.GetButtonUp("Horizontal"))
         {
-            rigidbody.velocity = new Vector2(rigidbody.velocity.normalized.x * 0.5f, rigidbody.velocity.y);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.normalized.x * 0.5f, GetComponent<Rigidbody2D>().velocity.y);
         }
 
         //RunLeft
@@ -105,15 +105,15 @@ public class StagePlayerController : MonoBehaviour
 
         Vector2 move = new Vector2(horizontal, 0.0f);
 
-        rigidbody.AddForce(Vector2.right * horizontal, ForceMode2D.Impulse);
+        GetComponent<Rigidbody2D>().AddForce(Vector2.right * horizontal, ForceMode2D.Impulse);
 
-        if (rigidbody.velocity.x > maxSpeed)
+        if (GetComponent<Rigidbody2D>().velocity.x > maxSpeed)
         {
-            rigidbody.velocity = new Vector2(maxSpeed, rigidbody.velocity.y);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
         }
-        else if (rigidbody.velocity.x < maxSpeed * (-1))
+        else if (GetComponent<Rigidbody2D>().velocity.x < maxSpeed * (-1))
         {
-            rigidbody.velocity = new Vector2(maxSpeed * (-1), rigidbody.velocity.y);
+            GetComponent<Rigidbody2D>().velocity = new Vector2(maxSpeed * (-1), GetComponent<Rigidbody2D>().velocity.y);
         }
 
         if (!Mathf.Approximately(move.x, 0.0f))
