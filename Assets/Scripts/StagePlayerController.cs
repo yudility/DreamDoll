@@ -15,9 +15,35 @@ public class StagePlayerController : MonoBehaviour
 
     public float maxSpeed = 3.0f;
     public float jumpPower;
-
-
+    
     Vector2 lookDirection = new Vector2(1, 0);
+
+    //체력바
+    public int maxHp;
+    public int nowHp;
+    public int atkDmg;
+    public float atkSpeed = 1;
+    public bool attacked = false;
+    public Image nowHpbar;
+   
+    
+    // 체력바
+    void AttackTrue()
+    {
+        attacked = true;
+    }
+    void AttackFalse()
+    {
+        attacked = false;
+    }
+    void SetAttackSpeed(float speed)
+    {
+        animator.SetFloat("attackSpeed", speed);
+        atkSpeed = speed;
+    }
+
+
+    
 
     private void Awake()
     {
@@ -26,9 +52,21 @@ public class StagePlayerController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    void Start()
+    {
+        //체력바
+        maxHp = 100;
+        nowHp = 100;
+        atkDmg = 2;
 
+        SetAttackSpeed(1.5f);
+
+    }
     void Update()
     {
+        //체력바
+        nowHpbar.fillAmount = (float) nowHp / (float) maxHp;
+
         //Landing Platform
         Debug.DrawRay(GetComponent<Rigidbody2D>().position, Vector3.down * 1.5f, Color.yellow);
 
