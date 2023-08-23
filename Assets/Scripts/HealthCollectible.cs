@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class HealthCollectible : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        // Debug.Log("Object that entered the trigger : " + other);
-
-        /*
-        //플레이어 컨트롤러로 바꾸기
-        RubyController controller = other.GetComponent<RubyController>();
-
-        if (controller != null)
+        if (col.CompareTag("Player"))
         {
-            controller.ChangeHealth(1);
+            StagePlayerController player = col.GetComponent<StagePlayerController>();
+            player.nowHp += 20;
+            if (player.nowHp > player.maxHp)
+                player.nowHp = player.maxHp;
             Destroy(gameObject);
-        }*/
+        }
     }
 
 
