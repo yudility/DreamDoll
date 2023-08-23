@@ -38,12 +38,10 @@ public class StagePlayerController : MonoBehaviour
     }
     void SetAttackSpeed(float speed)
     {
-        animator.SetFloat("attackSpeed", speed);
+        //animator.SetFloat("attackSpeed", speed);
         atkSpeed = speed;
     }
 
-
-    
 
     private void Awake()
     {
@@ -96,6 +94,14 @@ public class StagePlayerController : MonoBehaviour
         {
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
         }
+
+
+        //АјАн
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            //animator.SetTrigger("PlayerAttack");
+        }
+
     }
     void FixedUpdate()
     {

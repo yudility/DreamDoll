@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,11 +21,33 @@ public class EnemyMove : MonoBehaviour
 
     // 피격
     public string enemyName;
-    public int maxHp;
-    public int nowHp;
-    public int atkDmg;
+
+    [SerializeField]
+    private int maxHp;
+    private int nowHp;
+    private int atkDmg;
+
+    public bool isHit;
     public int atkSpeed;
 
+
+    public void TakeDamag(int dam)
+    {
+        nowHp -= dam;
+        isHit = true;
+
+        if (nowHp < 0)
+        {
+            Debug.Log("Monster Dead");
+            GameObject.Destroy(gameObject);
+        }
+        else
+        {
+            //MyAnimSetTrigger("Hit");
+            rigid.velocity = Vector2.zero;
+            
+        }
+    }
     // 피격
     private void SetEnemyStatus(string _enemyName, int _maxHp, int _atkDmg, int _atkSpeed)
     {
@@ -34,6 +57,13 @@ public class EnemyMove : MonoBehaviour
         atkDmg = _atkDmg;
         atkSpeed = _atkSpeed;
     }
+
+    //Todo
+    //Monster 체력이 0이되면 몬스터 오브젝트 Destroy
+
+    //Todo
+    //콜라이더에 검 닿으면 -> 데미지 입기
+
 
     //플레이어 스크립트 이름 바꾸기
 
@@ -67,10 +97,6 @@ public class EnemyMove : MonoBehaviour
         //체력바 조정
         nowHpbar.fillAmount = (float)nowHp / (float)maxHp;
     }
-
-
-
-    
 
 
 
@@ -136,6 +162,11 @@ public class EnemyMove : MonoBehaviour
         {
             traceTarget = collision.gameObject;
             isTracing = true;
+        }
+
+        if (collision.CompareTag("Weapon"))
+        {
+           
         }
     }
 
