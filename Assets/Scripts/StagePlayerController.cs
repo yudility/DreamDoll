@@ -74,10 +74,9 @@ public class StagePlayerController : MonoBehaviour
 
         if (rayHit.collider != null)
         {
-            if (rayHit.distance < 2.0f)
+            if (rayHit.distance < 1.5f)
                 animator.SetBool("isJumping", false);
                 //Debug.Log(rayHit.collider.name);
-
         }
 
         if (Input.GetButtonDown("Jump") && !animator.GetBool("isJumping"))
