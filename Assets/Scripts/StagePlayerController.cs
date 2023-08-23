@@ -25,6 +25,8 @@ public class StagePlayerController : MonoBehaviour
     public float atkSpeed = 1;
     public bool attacked = false;
     public Image nowHpbar;
+
+    public GameObject weapon;
    
     
     // 체력바
@@ -60,15 +62,41 @@ public class StagePlayerController : MonoBehaviour
         SetAttackSpeed(1.5f);
 
     }
+
+    private IEnumerator DeactivateWeaponAfterDelay(float delay)
+    {
+        
+        yield return new WaitForSeconds(delay);
+       
+        weapon.SetActive(false);
+    }
+
     void Update()
     {
         //체력바
-        nowHpbar.fillAmount = (float) nowHp / (float) maxHp;
+        //nowHpbar.fillAmount = (float) nowHp / (float) maxHp;
 
-        if ( Input.GetKeyDown(KeyCode.F) && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+
+        //if (Input.GetKeyDown(KeyCode.F) && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if ( Input.GetKeyDown(KeyCode.F) )
         {
-            animator.SetTrigger("attack");
+            //animator.SetTrigger("attack"); 원본
+            animator.SetBool("isAttack", true);
+
+            weapon.SetActive(true);
+            //weapon.transform.position.Set(weapon.transform.position.x + 1.0f, weapon.transform.position.y, 0.0f);
+
         }
+        if(Input.GetKeyUp(KeyCode.F) ) 
+        {
+            StartCoroutine(DeactivateWeaponAfterDelay(0.5f)); // 1초 후에 무기를 비활성화
+            animator.SetBool("isAttack", false);
+           
+            //weapon.SetActive(false);
+        }
+
+
+
 
         //Landing Platform
             Debug.DrawRay(GetComponent<Rigidbody2D>().position, Vector3.down * 1.5f, Color.yellow);

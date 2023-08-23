@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &21815732 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7980857484879351792, guid: 4da6f9a9b08cb124db3504cd4c8d1bba,
+    type: 3}
+  m_PrefabInstance: {fileID: 3974248822631052531}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &265780042
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265780042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.67, y: -0.52, z: -10}
+  m_LocalPosition: {x: -7.67, y: -1.26, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -502,7 +508,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 713729833}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.3857636, y: 1.13331, z: -10}
+  m_LocalPosition: {x: -4.2072, y: 1.1333101, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8505,6 +8511,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4344801280513483147, guid: 4da6f9a9b08cb124db3504cd4c8d1bba,
+        type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 21815732}
+    - target: {fileID: 4344801280513483147, guid: 4da6f9a9b08cb124db3504cd4c8d1bba,
+        type: 3}
+      propertyPath: attacked
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4344801281767974985, guid: 4da6f9a9b08cb124db3504cd4c8d1bba,
         type: 3}
       propertyPath: m_Name
@@ -8523,7 +8539,7 @@ PrefabInstance:
     - target: {fileID: 4344801281767974991, guid: 4da6f9a9b08cb124db3504cd4c8d1bba,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.52
+      value: -1.26
       objectReference: {fileID: 0}
     - target: {fileID: 4344801281767974991, guid: 4da6f9a9b08cb124db3504cd4c8d1bba,
         type: 3}
@@ -8565,10 +8581,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7980857485211984435, guid: 4da6f9a9b08cb124db3504cd4c8d1bba,
+    - target: {fileID: 7980857484879351792, guid: 4da6f9a9b08cb124db3504cd4c8d1bba,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7980857484879351794, guid: 4da6f9a9b08cb124db3504cd4c8d1bba,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 7980857484879351794, guid: 4da6f9a9b08cb124db3504cd4c8d1bba,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.67
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4da6f9a9b08cb124db3504cd4c8d1bba, type: 3}
