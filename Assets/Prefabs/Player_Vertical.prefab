@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 823186222211541437}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.17, y: -1.78, z: 0}
-  m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 3
-  jumpPower: 20
+  jumpPower: 15
 --- !u!70 &1283452088
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
