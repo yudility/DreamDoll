@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1283452088}
   m_Layer: 10
   m_Name: Player_Vertical
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,6 +144,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 3
   jumpPower: 15
+  maxHp: 0
+  nowHp: 0
+  atkDmg: 0
+  atkSpeed: 1
+  attacked: 0
+  nowHpbar: {fileID: 0}
 --- !u!70 &1283452088
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
