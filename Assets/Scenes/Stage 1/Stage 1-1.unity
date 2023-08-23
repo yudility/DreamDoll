@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ConfineMode: 0
   m_BoundingVolume: {fileID: 0}
-  m_BoundingShape2D: {fileID: 0}
+  m_BoundingShape2D: {fileID: 1861265623}
   m_ConfineScreenEdges: 1
   m_Damping: 0
 --- !u!114 &48421445
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Follow: {fileID: 839988529}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5
+    OrthographicSize: 4.5
     NearClipPlane: 0.1
     FarClipPlane: 500
     Dutch: 0
@@ -7299,6 +7299,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 823186221243048063, guid: 138d85cdf3f50fe4697484cb78753e73,
+        type: 3}
+      propertyPath: nowHpbar
+      value: 
+      objectReference: {fileID: 1631114117}
     - target: {fileID: 823186222211541435, guid: 138d85cdf3f50fe4697484cb78753e73,
         type: 3}
       propertyPath: m_RootOrder
@@ -7440,6 +7445,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6469876703158526617}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1631114117 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6662345834476846365, guid: f0b43796745f5e940ac230b280ee2cc9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6469876703158526617}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1657500748
 GameObject:
   m_ObjectHideFlags: 0
@@ -7669,7 +7686,7 @@ Camera:
   far clip plane: 500
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7693,7 +7710,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800630407}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.17, y: -1.78, z: -10}
+  m_LocalPosition: {x: -4.35658, y: -0.3666942, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7744,7 +7761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1861265624}
   - component: {fileID: 1861265623}
-  m_Layer: 0
+  m_Layer: 25
   m_Name: cameraConfiner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7776,11 +7793,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 1}
-      - {x: -0.95105654, y: 0.30901697}
-      - {x: -0.5877852, y: -0.80901706}
-      - {x: 0.58778536, y: -0.80901694}
-      - {x: 0.9510565, y: 0.30901712}
+    - - {x: 56.2, y: 10.7}
+      - {x: -0.5, y: 10.7}
+      - {x: -0.5, y: -3}
+      - {x: 28.864468, y: -3.1057973}
+      - {x: 31.756634, y: -3.0741897}
+      - {x: 35.575314, y: -1.0232854}
+      - {x: 56.237854, y: -1.167881}
 --- !u!4 &1861265624
 Transform:
   m_ObjectHideFlags: 0
