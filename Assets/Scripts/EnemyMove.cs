@@ -6,20 +6,20 @@ using UnityEngine.UI;
 
 public class EnemyMove : MonoBehaviour
 {
-    // ¸ó½ºÅÍ ÀÌµ¿
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
     public int nextMove;
     bool isTracing = false;
     GameObject traceTarget;
     SpriteRenderer spriteRenderer;
     Rigidbody2D rigid;
 
-    // Ã¼·Â¹Ù
+    // Ã¼ï¿½Â¹ï¿½
     public GameObject prfHPBar;
     public GameObject canvas;
     RectTransform HPBar;
     public float height = 1.7f;
 
-    // ÇÇ°Ý
+    // ï¿½Ç°ï¿½
     public string enemyName;
 
     [SerializeField]
@@ -48,7 +48,7 @@ public class EnemyMove : MonoBehaviour
             
         }
     }
-    // ÇÇ°Ý
+    // ï¿½Ç°ï¿½
     private void SetEnemyStatus(string _enemyName, int _maxHp, int _atkDmg, int _atkSpeed)
     {
         enemyName = _enemyName;
@@ -58,23 +58,17 @@ public class EnemyMove : MonoBehaviour
         atkSpeed = _atkSpeed;
     }
 
-    //Todo
-    //Monster Ã¼·ÂÀÌ 0ÀÌµÇ¸é ¸ó½ºÅÍ ¿ÀºêÁ§Æ® Destroy
 
-    //Todo
-    //ÄÝ¶óÀÌ´õ¿¡ °Ë ´êÀ¸¸é -> µ¥¹ÌÁö ÀÔ±â
-
-
-    //ÇÃ·¹ÀÌ¾î ½ºÅ©¸³Æ® ÀÌ¸§ ¹Ù²Ù±â
-
-    //public Sword_Man player;
+    public StagePlayerController player;
     Image nowHpbar;
+
+
     void Start()
     {
-        //Ã¼·Â¹Ù
+        //Ã¼ï¿½Â¹ï¿½
         HPBar = Instantiate(prfHPBar, canvas.transform).GetComponent<RectTransform>();
 
-        //Ä³¸¯º° ½ºÅÝÁ¶Á¤
+        //Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if(name.Equals("slime"))
         {
             SetEnemyStatus("slime", 3, 1, 1);
@@ -84,23 +78,23 @@ public class EnemyMove : MonoBehaviour
             SetEnemyStatus("skeleton", 5, 2, 1);
         }
 
-        //Ã¼·Â¹Ù Á¶Á¤
+        //Ã¼ï¿½Â¹ï¿½ ï¿½ï¿½ï¿½ï¿½
         nowHpbar = HPBar.transform.GetChild(0).GetComponent<Image>();
     }
 
     void Update()
     {   
-        //Ã¼·Â¹Ù
+        //Ã¼ï¿½Â¹ï¿½
         Vector3 _HPBarPos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + height, 0));
         HPBar.position = _HPBarPos;
 
-        //Ã¼·Â¹Ù Á¶Á¤
+        //Ã¼ï¿½Â¹ï¿½ ï¿½ï¿½ï¿½ï¿½
         nowHpbar.fillAmount = (float)nowHp / (float)maxHp;
     }
 
 
 
-    // ¸ó½ºÅÍ ÀÌµ¿
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
     void Awake()
     {
         nextMove = -1;
@@ -123,12 +117,12 @@ public class EnemyMove : MonoBehaviour
         {
             Vector3 playerPos = traceTarget.transform.position;
 
-            if (playerPos.x < transform.position.x) // ÇÃ·¹ÀÌ¾î | ¸ó½ºÅÍ
+            if (playerPos.x < transform.position.x) // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ | ï¿½ï¿½ï¿½ï¿½
             {
                 spriteRenderer.flipX = false;
                 nextMove = -1;
             }
-            else if (playerPos.x > transform.position.x) // ¸ó½ºÅÍ | ÇÃ·¹ÀÌ¾î 
+            else if (playerPos.x > transform.position.x) // ï¿½ï¿½ï¿½ï¿½ | ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ 
             {
                 spriteRenderer.flipX = true;
                 nextMove = 1;
@@ -162,6 +156,18 @@ public class EnemyMove : MonoBehaviour
         {
             traceTarget = collision.gameObject;
             isTracing = true;
+
+            if (player.attacked)
+            {
+                nowHp -= player.atkDmg;
+                Debug.Log(nowHp);
+                player.attacked = false;
+                if (nowHp <= 0) // ï¿½ï¿½ ï¿½ï¿½ï¿½
+                {
+                    Destroy(gameObject);
+                    Destroy(HPBar.gameObject);
+                }
+            }
         }
 
         if (collision.CompareTag("Weapon"))
@@ -193,7 +199,7 @@ public class EnemyMove : MonoBehaviour
     
 
     /* 
-    // ¿ø·¡ ½ºÅ©¸³Æ®
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     public int nextMove;
