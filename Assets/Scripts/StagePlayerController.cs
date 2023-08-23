@@ -67,8 +67,13 @@ public class StagePlayerController : MonoBehaviour
         //Ã¼·Â¹Ù
         nowHpbar.fillAmount = (float) nowHp / (float) maxHp;
 
+        if ( Input.GetKeyDown(KeyCode.F) && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        {
+            animator.SetTrigger("attack");
+        }
+
         //Landing Platform
-        Debug.DrawRay(GetComponent<Rigidbody2D>().position, Vector3.down * 1.5f, Color.yellow);
+            Debug.DrawRay(GetComponent<Rigidbody2D>().position, Vector3.down * 1.5f, Color.yellow);
 
         RaycastHit2D rayHit = Physics2D.Raycast(GetComponent<Rigidbody2D>().position, Vector2.down, 1.5f, LayerMask.GetMask("Platform"));
 

@@ -35,10 +35,10 @@ public class EnemyMove : MonoBehaviour
         atkSpeed = _atkSpeed;
     }
 
-    //플레이어 스크립트 이름 바꾸기
-
-    //public Sword_Man player;
+    public StagePlayerController player;
     Image nowHpbar;
+
+
     void Start()
     {
         //체력바
@@ -136,6 +136,18 @@ public class EnemyMove : MonoBehaviour
         {
             traceTarget = collision.gameObject;
             isTracing = true;
+
+            if (player.attacked)
+            {
+                nowHp -= player.atkDmg;
+                Debug.Log(nowHp);
+                player.attacked = false;
+                if (nowHp <= 0) // 적 사망
+                {
+                    Destroy(gameObject);
+                    Destroy(HPBar.gameObject);
+                }
+            }
         }
     }
 
