@@ -19,6 +19,8 @@ public class TopDownPlayerController : MonoBehaviour
     Animator animator;
     Vector2 lookDirection = new Vector2(1, 0);
 
+ 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +36,7 @@ public class TopDownPlayerController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         
-        Debug.Log(horizontal + " " + vertical);
+        //Debug.Log(horizontal + " " + vertical);
 
         Vector2 move = new Vector2(horizontal, vertical);
 
