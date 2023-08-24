@@ -157,7 +157,12 @@ public class EnemyMove : MonoBehaviour
             traceTarget = collision.gameObject;
             isTracing = true;
 
-            if (player.attacked)
+            
+        }
+
+        if (collision.CompareTag("Weapon"))
+        {
+           if (player.attacked)
             {
                 nowHp -= player.atkDmg;
                 Debug.Log(nowHp);
@@ -168,11 +173,6 @@ public class EnemyMove : MonoBehaviour
                     Destroy(HPBar.gameObject);
                 }
             }
-        }
-
-        if (collision.CompareTag("Weapon"))
-        {
-           
         }
     }
 
