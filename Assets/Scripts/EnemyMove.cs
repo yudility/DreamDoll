@@ -115,8 +115,8 @@ public class EnemyMove : MonoBehaviour
 
     void Move()
     {
-        Debug.Log("nextMove = " + nextMove);
-        Debug.Log("isTracing = " + isTracing);
+        //Debug.Log("nextMove = " + nextMove);
+        //Debug.Log("isTracing = " + isTracing);
 
         if (isTracing)
         {
@@ -161,14 +161,17 @@ public class EnemyMove : MonoBehaviour
         {
             traceTarget = collision.gameObject;
             isTracing = true;
+            Debug.Log("Enemy meets player");
 
-            
+
         }
-
+        /*
         if (collision.CompareTag("Weapon"))
         {
-           if (player.attacked)
+            Debug.Log("Enemy meets Weapon");
+            if (player.attacked)
             {
+                Debug.Log("Player attacks");
                 nowHp -= player.atkDmg;
                 Debug.Log(nowHp);
                 player.attacked = false;
@@ -179,6 +182,7 @@ public class EnemyMove : MonoBehaviour
                 }
             }
         }
+        */
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -201,7 +205,26 @@ public class EnemyMove : MonoBehaviour
             Move();
         }
     }
-    
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Enemy  ahu");
+        if (collision.collider.CompareTag("Weapon"))
+        {
+            Debug.Log("Enemy meets Weapon");
+            
+            Debug.Log("Player attacks");
+            nowHp -= player.atkDmg;
+            Debug.Log(nowHp);
+            //player.attacked = false;
+            if (nowHp <= 0) // �� ���
+            {
+                Destroy(gameObject);
+                Destroy(HPBar.gameObject);
+            }
+            
+        }
+    }
 
     /* 
     // ���� ��ũ��Ʈ
@@ -240,5 +263,5 @@ public class EnemyMove : MonoBehaviour
         Invoke("Think", 3);
     }
     */
-   
+
 }
