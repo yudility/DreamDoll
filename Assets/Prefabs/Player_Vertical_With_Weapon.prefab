@@ -150,6 +150,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 48421446, guid: 138d85cdf3f50fe4697484cb78753e73, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 648068807, guid: 138d85cdf3f50fe4697484cb78753e73, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1283452088, guid: 138d85cdf3f50fe4697484cb78753e73, type: 3}
       propertyPath: m_Size.y
       value: 1.1132016
@@ -167,6 +175,11 @@ PrefabInstance:
       propertyPath: weapon
       value: 
       objectReference: {fileID: 7980857484879351792}
+    - target: {fileID: 823186221243048063, guid: 138d85cdf3f50fe4697484cb78753e73,
+        type: 3}
+      propertyPath: nowHpbar
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 823186222211541435, guid: 138d85cdf3f50fe4697484cb78753e73,
         type: 3}
       propertyPath: m_RootOrder
@@ -175,7 +188,7 @@ PrefabInstance:
     - target: {fileID: 823186222211541435, guid: 138d85cdf3f50fe4697484cb78753e73,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.67
+      value: 27.7
       objectReference: {fileID: 0}
     - target: {fileID: 823186222211541435, guid: 138d85cdf3f50fe4697484cb78753e73,
         type: 3}
@@ -230,10 +243,31 @@ PrefabInstance:
     - target: {fileID: 823186222211541437, guid: 138d85cdf3f50fe4697484cb78753e73,
         type: 3}
       propertyPath: m_Name
-      value: Player_Vertical (1)
+      value: Player_Vertical
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 138d85cdf3f50fe4697484cb78753e73, type: 3}
+--- !u!1 &3974248821113346999 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 48421443, guid: 138d85cdf3f50fe4697484cb78753e73,
+    type: 3}
+  m_PrefabInstance: {fileID: 3974248821081965044}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3974248822631052533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3974248821113346999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91bea2456bc67f646b99361b63401053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tPlayer: {fileID: 0}
+  tFollowTarget: {fileID: 0}
+  sceneConfiner: {fileID: 0}
 --- !u!114 &4344801280513483147 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 823186221243048063, guid: 138d85cdf3f50fe4697484cb78753e73,
