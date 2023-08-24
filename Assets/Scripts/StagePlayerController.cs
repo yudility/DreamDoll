@@ -15,7 +15,9 @@ public class StagePlayerController : MonoBehaviour
 
     public float maxSpeed = 3.0f;
     public float jumpPower;
-    
+    public string currentMapName;
+
+
     Vector2 lookDirection = new Vector2(1, 0);
 
     //Ã¼·Â¹Ù
@@ -60,6 +62,8 @@ public class StagePlayerController : MonoBehaviour
         atkDmg = 2;
 
         SetAttackSpeed(1.5f);
+
+        DontDestroyOnLoad(gameObject);
 
     }
 
