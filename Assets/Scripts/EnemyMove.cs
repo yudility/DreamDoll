@@ -16,6 +16,8 @@ public class EnemyMove : MonoBehaviour
     // ü�¹�
     public GameObject prfHPBar;
     public GameObject canvas;
+
+    //public Camera virtualCamera;
     RectTransform HPBar;
     public float height = 1.7f;
 
@@ -83,7 +85,10 @@ public class EnemyMove : MonoBehaviour
     }
 
     void Update()
-    {   
+    {
+
+
+        //Debug.Log(Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + height, 0)));
         //ü�¹�
         Vector3 _HPBarPos = Camera.main.WorldToScreenPoint(new Vector3(transform.position.x, transform.position.y + height, 0));
         HPBar.position = _HPBarPos;
