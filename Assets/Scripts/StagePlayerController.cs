@@ -82,7 +82,7 @@ public class StagePlayerController : MonoBehaviour
 
 
         //if (Input.GetKeyDown(KeyCode.F) && !animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-        if ( Input.GetKeyDown(KeyCode.F) )
+        if ( Input.GetKeyDown(KeyCode.F) && !animator.GetCurrentAnimatorStateInfo(0).IsName("PlayerAttack"))
         {
             //animator.SetTrigger("attack"); ¿øº»
             animator.SetBool("isAttack", true);
